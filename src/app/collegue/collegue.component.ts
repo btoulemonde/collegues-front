@@ -15,11 +15,21 @@ export class CollegueComponent implements OnInit {
 
   ngOnInit() {
   }
+
+  emailChange(valeurSaisie: string) {
+    this.col.email = valeurSaisie;
+  }
+  photoUrlChange(valeurSaisie: string) {
+    this.col.photoUrl = valeurSaisie;
+  }
   ajouterCollegue() {
     console.log('Création d\'un nouveau collègue');
   }
   modifierCollegue(col: Collegue) {
     this.modifier = false;
     console.log(`modification du collègue ${col.nom}`);
+  }
+  retour(){
+    this.modifier = true;
   }
 }

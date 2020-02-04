@@ -33,10 +33,10 @@
                 <div class="form-group col-12">
                   <dl class="row">
                     <dt class="col-6"><label for="email">Email</label></dt>
-                    <dd class="col-6"><input type="email" class="form-control" id="email" name="email"
+                    <dd class="col-6"><input type="email" [value]="col.email" class="form-control" id="email"  #saisie1 (change)="emailChange(saisie1.value)"
                         aria-describedby="emailHelp"></dd>
                     <dt class="col-6"><label for="photoUrl">Photo url</label></dt>
-                    <dd class="col-6"><input type="photoUrl" class="form-control" id="photoUrl" name="photoUrl"></dd>
+                    <dd class="col-6"><input type="photoUrl" [value]="col.photoUrl" class="form-control" id="photoUrl"  #saisie2 (change)="photoUrlChange(saisie2.value)"></dd>
                   </dl>
                 </div>
               </ng-template>
@@ -57,7 +57,7 @@
   <ng-template #elseBlock2>
 
     <div class="col-4 offset-4">
-      <button type="button" class="btn btn-dark">Valider</button>
+      <button type="button" class="btn btn-dark"(click)="retour()">Valider</button>
     </div>
 
   </ng-template>
