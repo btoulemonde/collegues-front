@@ -1,4 +1,4 @@
-import {Collegue} from "../models/collegue";
+import {Collegue} from "../models/Collegue";
 
 let collegueMock:Collegue = new Collegue('M01','Dupont','Paul','paul.dupont@gmail.com',new Date(1990,4,5),'http://www.w3schools.com/bootstrap/img_avatar3.png');
 
