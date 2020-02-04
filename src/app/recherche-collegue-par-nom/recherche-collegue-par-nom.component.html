@@ -1,0 +1,14 @@
+<div class="countainer px-3 py-5">
+  <div class="row">
+    <div class="col-4"><label for="nom">Recherche par nom</label></div>
+    <div class="col-5"><input type="nom" class="form-control" id="nom" name="nom"></div>
+    <div class="col-3"> <button type="button" (click)="affichageMatricules()" class="btn btn-dark">Rechercher</button></div>
+  </div>
+  <div class="row">
+    <div class="col-8">
+      <ul *ngIf = "afficherMatricules">
+      <li *ngFor="let matricule of matricules">{{matricule.matricule}}</li>
+      </ul>
+    </div>
+  </div>
+</div>
