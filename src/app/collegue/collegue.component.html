@@ -1,40 +1,57 @@
 <div class="countainer px-3 py-5">
-    <div class="col-md-12 col-lg-6 col-xl-5">
-        <div class="card mb-4 shadow-sm">
+  <div class="col-md-12 col-lg-6 col-xl-5">
+    <div class="card mb-4 shadow-sm">
 
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-4">
-                        <img class="img-fluid" src="{{col.photoUrl}}" alt="photo">
-                    </div>
-                    <div class="col-8">
-                        <dl class="row">
-                            <dt class=" col-6">Matricule</dt>
-                            <dd class="col-6">{{col.matricule}}</dd>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-4">
+            <img class="img-fluid" src="{{col.photoUrl}}" alt="photo">
+          </div>
+          <div class="col-8">
+            <dl class="row">
+              <dt class=" col-6">Matricule</dt>
+              <dd class="col-6">{{col.matricule}}</dd>
 
-                            <dt class="col-6">Nom</dt>
-                            <dd class="col-6">{{col.nom}}</dd>
+              <dt class="col-6">Nom</dt>
+              <dd class="col-6">{{col.nom.toLocaleUpperCase()}}</dd>
 
-                            <dt class="col-6">Prénoms</dt>
-                            <dd class="col-6">{{col.prenoms}}</dd>
+              <dt class="col-6">Prénoms</dt>
+              <dd class="col-6">{{col.prenoms}}</dd>
 
-                            <dt class="col-6">Date de naissance</dt>
-                            <dd class="col-6">{{col.dateDeNaissance.toLocaleDateString()}}</dd>
 
-                            <dt class="col-6">Email</dt>
-                            <dd class="col-6">{{col.email}}</dd>
-                        </dl>
-                    </div>
+              <dt class="col-6">Date de naissance</dt>
+              <dd class="col-6">{{col.dateDeNaissance.toLocaleDateString()}}</dd>
+              <div *ngIf="modifier;else elseBlock1" class="col-12">
+
+                <dl class="row">
+                  <dt class="col-6">Email</dt>
+                  <dd class="col-6">{{col.email}}</dd>
+                </dl>
+              </div>
+
+              <ng-template #elseBlock1>
+                <div class="form-group col-12">
+                  <dl class="row">
+                    <dt class="col-6"><label for="email">Email</label></dt>
+                    <dd class="col-6"><input type="email" class="form-control" id="email" name="email"
+                        aria-describedby="emailHelp"></dd>
+                    <dt class="col-6"><label for="photoUrl">Photo url</label></dt>
+                    <dd class="col-6"><input type="photoUrl" class="form-control" id="photoUrl" name="photoUrl"></dd>
+                  </dl>
                 </div>
-            </div>
+              </ng-template>
+            </dl>
+          </div>
         </div>
+      </div>
     </div>
-    <div class="row">
-        <div class="col-4 ">
-            <a href="#" (click)="ajouterCollegue()" [hidden] = "masquerlien">Créer un nouveau collègue</a>
-        </div>
-        <div class="col-4">
-            <button type="button" class="btn btn-dark" (click)="modifierCollegue(col)">Modifier</button>
-        </div>
+  </div>
+  <div class="row">
+    <div class="col-4 ">
+      <a href="#" (click)="ajouterCollegue()" [hidden]="!modifier">Créer un nouveau collègue</a>
     </div>
+    <div class="col-4">
+      <button type="button" class="btn btn-dark" (click)="modifierCollegue(col)">Modifier</button>
+    </div>
+  </div>
 </div>

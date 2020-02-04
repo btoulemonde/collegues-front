@@ -9,6 +9,8 @@ import { Collegue } from '../models/Collegue';
 })
 export class CollegueComponent implements OnInit {
   @Input() col: Collegue;
+  modifier = true;
+
   constructor() { }
 
   ngOnInit() {
@@ -17,6 +19,7 @@ export class CollegueComponent implements OnInit {
     console.log('Création d\'un nouveau collègue');
   }
   modifierCollegue(col: Collegue) {
+    this.modifier = false;
     console.log(`modification du collègue ${col.nom}`);
   }
 }
