@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {collegueMock} from './mock/collegues.mock';
+import { listeMatricules } from './mock/matricules.mock';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -8,4 +9,5 @@ import {collegueMock} from './mock/collegues.mock';
 export class AppComponent {
   title = 'collegues-front';
   unObjetCollegueFourni = collegueMock;
+  matriculeFourni = listeMatricules;
 }
