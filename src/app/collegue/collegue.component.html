@@ -19,7 +19,7 @@
                             <dd class="col-6">{{col.prenoms}}</dd>
 
                             <dt class="col-6">Date de naissance</dt>
-                            <dd class="col-6">{{col.dateDeNaissance.toDateString()}}</dd>
+                            <dd class="col-6">{{col.dateDeNaissance.toLocaleDateString()}}</dd>
 
                             <dt class="col-6">Email</dt>
                             <dd class="col-6">{{col.email}}</dd>
@@ -31,7 +31,7 @@
     </div>
     <div class="row">
         <div class="col-4 ">
-            <a href="#" (click)="ajouterCollegue()">Créer un nouveau collègue</a>
+            <a href="#" (click)="ajouterCollegue()" [hidden] = "masquerlien">Créer un nouveau collègue</a>
         </div>
         <div class="col-4">
             <button type="button" class="btn btn-dark" (click)="modifierCollegue(col)">Modifier</button>
