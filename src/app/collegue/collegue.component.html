@@ -1,13 +1,13 @@
 <div class="countainer px-3 py-5">
   <div class="col-md-12 col-lg-6 col-xl-5">
-    <div class="card mb-4 shadow-sm">
+    <div class="card mb-1 ">
 
       <div class="card-body">
         <div class="row">
-          <div class="col-4">
+          <div class="col-3">
             <img class="img-fluid" src="{{col.photoUrl}}" alt="photo">
           </div>
-          <div class="col-8">
+          <div class="col-9">
             <dl class="row">
               <dt class=" col-6">Matricule</dt>
               <dd class="col-6">{{col.matricule}}</dd>
@@ -46,12 +46,19 @@
       </div>
     </div>
   </div>
-  <div class="row">
-    <div class="col-4 ">
-      <a href="#" (click)="ajouterCollegue()" [hidden]="!modifier">Créer un nouveau collègue</a>
+  <div *ngIf="modifier; else elseBlock2" class="row">
+    <div  class="col-4 ">
+      <a href="#" (click)="ajouterCollegue()" >Créer un nouveau collègue</a>
     </div>
     <div class="col-4">
       <button type="button" class="btn btn-dark" (click)="modifierCollegue(col)">Modifier</button>
     </div>
   </div>
+  <ng-template #elseBlock2>
+
+    <div class="col-4 offset-4">
+      <button type="button" class="btn btn-dark">Valider</button>
+    </div>
+
+  </ng-template>
 </div>
