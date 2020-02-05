@@ -29,7 +29,7 @@ export class CollegueComponent implements OnInit {
     this.modifier = false;
     console.log(`modification du collègue ${col.nom}`);
   }
-  retour(){
+  retour() {
     this.modifier = true;
   }
 }

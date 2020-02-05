@@ -6,7 +6,7 @@ import { listeMatricules } from '../mock/matricules.mock';
   styleUrls: ['./recherche-collegue-par-nom.component.css']
 })
 export class RechercheCollegueParNomComponent implements OnInit {
-  @Input() matricules = listeMatricules;
+  @Input() matricules: string[];
   afficherMatricules = false;
 
   constructor() { }
