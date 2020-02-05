@@ -10,7 +10,7 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./recherche-collegue-par-nom.component.css']
 })
 export class RechercheCollegueParNomComponent implements OnInit {
-  listeMatricules: Observable<Collegue[]>;
+  listeMatricules: Observable<string[]>;
   afficherMatricules = false;
 
 

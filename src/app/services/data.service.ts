@@ -10,14 +10,14 @@ const url = 'https://btoulemonde-collegues-api.herokuapp.com/collegues';
   providedIn: 'root'
 })
 export class DataService {
-
   constructor(private httpClient: HttpClient) { }
 
-  listerMatriculeParNom(nom: string): Observable<Collegue[]> {
-    return this.httpClient.get<Collegue[]>(`${url}?nom=${nom}`);
+  listerMatriculeParNom(nom: string): Observable<string[]> {
+
+    return this.httpClient.get<string[]>(`${url}?nom=${nom}`);
   }
 
-  recupererCollegueCourant(){
-    return this.httpClient.get<Collegue[]>(`${url}/`);
+  recupererCollegueCourant(matricule: string) {
+    return this.httpClient.get<string[]>(`${url}/${matricule}`);
   }
 }
