@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Collegue } from '../models/Collegue';
 import { DataService } from '../services/data.service';
-import { CollegueModif } from '../models/CollegueModif';
+
 
 
 @Component({
@@ -24,7 +24,7 @@ export class CollegueComponent implements OnInit {
 
   ajouterCollegue() {
     this.creer = false;
-    console.log('Création d\'un nouveau collègue');
+
   }
   creerCollegue() {
     this.dataService.creerCollegue(this.collegueACreer).subscribe(() => {} , error => console.log(error));
@@ -41,6 +41,7 @@ export class CollegueComponent implements OnInit {
   }
   annuler() {
     this.modifier = true;
+    this.creer = true;
   }
 
 }

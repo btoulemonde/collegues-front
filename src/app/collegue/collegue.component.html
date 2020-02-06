@@ -53,7 +53,8 @@
                       </div>
                     </dd>
                   </dl>
-                  <div class="row" #elseBlockButtonModifier>
+
+                  <div class="row" >
                     <div class="col-4 " >
                       <button type="button" class="btn btn-dark"
                         (click)="modifierCollegue(col.matricule)">Valider</button>
@@ -63,6 +64,7 @@
                         (click)="annuler()">annuler</button>
                     </div>
                   </div>
+
                 </form>
               </div>
             </ng-template>
@@ -94,11 +96,26 @@
                     </dd>
                   </dl>
 
-                  <div class="row" *ngIf="etatForm.valid">
-                    <div class="col-4 offset-4 ">
+                  <div class="row" *ngIf="etatForm.valid; else blockValiderCreerDisable">
+                    <div class="col-4  ">
                       <button class="btn btn-dark" (click)="creerCollegue()">Valider</button>
                     </div>
+                    <div class="col-4 " >
+                      <button type="button" class="btn btn-dark"
+                        (click)="annuler()">annuler</button>
+                    </div>
                   </div>
+                  <ng-template #blockValiderCreerDisable>
+                    <div class="row">
+                    <div class="col-4  ">
+                      <button class="btn btn-dark" (click)="creerCollegue() " disabled>Valider</button>
+                    </div>
+                    <div class="col-4 offset-3" >
+                      <button type="button" class="btn btn-dark"
+                        (click)="annuler()">annuler</button>
+                    </div>
+                  </div>
+                  </ng-template>
 
                 </form>
               </div>
@@ -113,8 +130,8 @@
     </div>
   </div>
 
-  <div *ngIf="creer">
-    <div *ngIf="modifier; else elseBlockButtonModifier" class="row">
+  <div *ngIf="creer ||modifier">
+    <div  class="row">
 
       <div class="col-4 ">
         <button class="btn btn-dark" (click)="ajouterCollegue()">Créer un nouveau collègue</button>
