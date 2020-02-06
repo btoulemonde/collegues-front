@@ -7,7 +7,7 @@
   <div class="row">
     <div class="col-8">
       <ul *ngIf = "afficherMatricules">
-      <li *ngFor="let mat of listeMatricules | async">{{mat}}</li>
+      <li *ngFor="let mat of listeMatricules | async"><a href="#"  (click)="recupererCollegue(mat)" >{{mat}}</a></li>
       </ul>
     </div>
   </div>

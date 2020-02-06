@@ -18,6 +18,6 @@ export class DataService {
   }
 
   recupererCollegueCourant(matricule: string) {
-    return this.httpClient.get<string[]>(`${url}/${matricule}`);
+    return this.httpClient.get<Collegue[]>(`${url}/${matricule}`);
   }
 }
