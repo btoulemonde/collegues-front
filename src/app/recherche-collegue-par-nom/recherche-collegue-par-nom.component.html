@@ -7,7 +7,7 @@
   </div>
   <div class="row">
     <div class="col-8"*ngIf="afficherMatricules">
-      <button  *ngFor="let mat of listeMatricules | async" class="btn btn-primary mb-3 "  (click)="recupererCollegue(mat)">{{mat}}</button>
+      <button  *ngFor="let mat of listeMatricules | async" class="btn btn-outline-dark mb-3 "  (click)="recupererCollegue(mat)">{{mat}}</button>
     </div>
   </div>
 </div>
