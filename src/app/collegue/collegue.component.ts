@@ -15,7 +15,7 @@ export class CollegueComponent implements OnInit {
   creer = true;
 
   collegueACreer: Collegue = new Collegue();
-  collegueAModifier: CollegueModif = {};
+  collegueAModifier: Collegue = new Collegue();
   constructor(private dataService: DataService) { }
 
   ngOnInit() {

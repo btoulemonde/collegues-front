@@ -35,7 +35,7 @@ export class DataService {
     return this.httpClient.post<Collegue>(url, nouveauCollegue);
   }
 
-  modifierCollegue(collegueModif: CollegueModif, matricule: string): Observable<Collegue> {
+  modifierCollegue(collegueModif: Collegue, matricule: string): Observable<Collegue> {
     return this.httpClient.patch<Collegue>(`${url}/${matricule}`, collegueModif);
   }
 }
