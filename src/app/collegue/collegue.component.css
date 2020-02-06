@@ -2,6 +2,6 @@ input.ng-invalid.ng-dirty {
   color: red;
 }
 
-input.ng-valid {
+input.ng-valid.ng-dirty {
   background-color: rgb(48, 167, 48);
 }
