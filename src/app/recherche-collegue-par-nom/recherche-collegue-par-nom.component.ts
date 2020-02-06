@@ -14,7 +14,7 @@ import { CommonModule } from '@angular/common';
 export class RechercheCollegueParNomComponent implements OnInit {
   listeMatricules: Observable<string[]>;
   afficherMatricules = false;
-  col: Observable<Collegue[]>;
+  collegue: Observable<Collegue[]>;
 
   constructor(private dataService: DataService) { }
 
@@ -29,7 +29,10 @@ export class RechercheCollegueParNomComponent implements OnInit {
     this.afficherMatricules = true;
   }
   recupererCollegue(matricule: string) {
-    this.col = this.dataService.recupererCollegueCourant(matricule);
+    this.dataService.recupererCollegueCourant(matricule).subscribe(
+      () => {},
+      error => console.log(error)
+    );
   }
 
 }

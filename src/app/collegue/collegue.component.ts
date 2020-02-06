@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Collegue } from '../models/Collegue';
+import { DataService } from '../services/data.service';
 
 
 @Component({
@@ -11,9 +12,10 @@ export class CollegueComponent implements OnInit {
   @Input() col: Collegue;
   modifier = true;
 
-  constructor() { }
+  constructor(private dataService: DataService) { }
 
   ngOnInit() {
+    this.dataService.subjectDetailCollegue.subscribe( collegueDetail => this.col = collegueDetail);
   }
 
   emailChange(valeurSaisie: string) {
