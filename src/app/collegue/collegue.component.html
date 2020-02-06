@@ -24,7 +24,8 @@
 
                 <dt class="col-6">Date de naissance</dt>
                 <dd class="col-6">{{col.dateDeNaissance | date:'dd/MM/yyyy'}}</dd>
-                <div *ngIf="modifier;else elseBlock1" class="col-12">
+
+                <div *ngIf="modifier;else elseBlockModifier" class="col-12">
 
                   <dl class="row">
                     <dt class="col-6">Email</dt>
@@ -34,16 +35,35 @@
               </dl>
             </div>
 
-            <ng-template #elseBlock1>
+            <ng-template #elseBlockModifier>
               <div class="form-group col-12">
-                <dl class="row">
-                  <dt class="col-6"><label for="email">Email</label></dt>
-                  <dd class="col-6"><input type="email" [value]="col.email" class="form-control" id="email" #saisie1
-                      (change)="emailChange(saisie1.value)" aria-describedby="emailHelp"></dd>
-                  <dt class="col-6"><label for="photoUrl">Photo url</label></dt>
-                  <dd class="col-6"><input type="photoUrl" [value]="col.photoUrl" class="form-control" id="photoUrl"
-                      #saisie2 (change)="photoUrlChange(saisie2.value)"></dd>
-                </dl>
+                <form>
+                  <dl class="row">
+                    <dt class="col-6"><label for="email">Email</label></dt>
+                    <dd class="col-6"><input type="email" class="form-control" id="email" name="email"
+                        [(ngModel)]="collegueAModifier.email" value="{{ col.email}}" #etatEmail="ngModel" required>
+                      <div class="text-danger" *ngIf="etatEmail.invalid && etatEmail.dirty">Vous devez saisir un email</div>
+                    </dd>
+                    <dt class="col-6"><label for="photoUrl">Photo url</label></dt>
+                    <dd class="col-6"><input type="photoUrl" class="form-control" id="photoUrl" name="photoUrl"
+                        [(ngModel)]="collegueAModifier.photoUrl" value={{col.photoUrl}} require minlength="7"
+                        #etatPhoto2="ngModel">
+                      <div class="text-danger" *ngIf="etatPhoto2.invalid && etatPhoto2.dirty">Vous devez saisir une url d'au moins 7
+                        caractères
+                      </div>
+                    </dd>
+                  </dl>
+                  <div class="row" #elseBlockButtonModifier>
+                    <div class="col-4 " >
+                      <button type="button" class="btn btn-dark"
+                        (click)="modifierCollegue(col.matricule)">Valider</button>
+                    </div>
+                    <div class="col-4 offset-4" >
+                      <button type="button" class="btn btn-dark"
+                        (click)="annuler()">annuler</button>
+                    </div>
+                  </div>
+                </form>
               </div>
             </ng-template>
 
@@ -63,20 +83,23 @@
                     <dt class="col-6"><label for="email">Email</label></dt>
                     <dd class="col-6"><input type="email" class="form-control" id="email" aria-describedby="emailHelp"
                         [(ngModel)]="collegueACreer.email" name="email" required #etatEmail="ngModel">
-                      <p *ngIf="etatEmail.invalid && etatEmail.dirty">Vous devez saisir un email</p>
+                      <div class="text-danger" *ngIf="etatEmail.invalid && etatEmail.dirty">Vous devez saisir un email</div>
                     </dd>
                     <dt class="col-6"><label for="photoUrl">Photo url</label></dt>
                     <dd class="col-6"><input type="photoUrl" class="form-control" id="photoUrl"
-                        [(ngModel)]="collegueACreer.photoUrl"  name="photoUrl" required minlength="7" #etatPhoto="ngModel">
-                      <p *ngIf="etatPhoto.invalid && etatPhoto.dirty">Vous devez saisir une url d'au moins 7 caractères
-                      </p>
+                        [(ngModel)]="collegueACreer.photoUrl" name="photoUrl" required minlength="7"
+                        #etatPhoto="ngModel">
+                      <div class="text-danger" *ngIf="etatPhoto.invalid && etatPhoto.dirty">Vous devez saisir une url d'au moins 7 caractères
+                      </div>
                     </dd>
                   </dl>
+
                   <div class="row" *ngIf="etatForm.valid">
                     <div class="col-4 offset-4 ">
                       <button class="btn btn-dark" (click)="creerCollegue()">Valider</button>
                     </div>
                   </div>
+
                 </form>
               </div>
 
@@ -91,24 +114,12 @@
   </div>
 
   <div *ngIf="creer">
-    <div *ngIf="modifier; else elseBlock2" class="row">
+    <div *ngIf="modifier; else elseBlockButtonModifier" class="row">
 
       <div class="col-4 ">
         <button class="btn btn-dark" (click)="ajouterCollegue()">Créer un nouveau collègue</button>
       </div>
       <div class="col-4">
-        <button type="button" class="btn btn-dark" (click)="modifierCollegue(col)">Modifier</button>
+        <button type="button" class="btn btn-dark" (click)="modiForm()">Modifier</button>
       </div>
     </div>
-  </div>
-  <ng-template #elseBlock2>
-
-    <div class="col-4 offset-4">
-      <button type="button" class="btn btn-dark" (click)="retour()">Valider</button>
-    </div>
-
-  </ng-template>
-  <ng-template #elseBlockBoutonCreer>
-
-  </ng-template>
-</div>

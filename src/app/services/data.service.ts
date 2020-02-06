@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, Subject } from 'rxjs';
 import { Collegue } from '../models/Collegue';
 import {tap} from 'rxjs/operators';
+import { CollegueModif } from '../models/CollegueModif';
 
 
 
@@ -32,5 +33,9 @@ export class DataService {
 
   creerCollegue(nouveauCollegue: Collegue): Observable<Collegue> {
     return this.httpClient.post<Collegue>(url, nouveauCollegue);
+  }
+
+  modifierCollegue(collegueModif: CollegueModif, matricule: string): Observable<Collegue> {
+    return this.httpClient.patch<Collegue>(`${url}/${matricule}`, collegueModif);
   }
 }

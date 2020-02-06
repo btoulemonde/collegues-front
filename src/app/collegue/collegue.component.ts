@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Collegue } from '../models/Collegue';
 import { DataService } from '../services/data.service';
+import { CollegueModif } from '../models/CollegueModif';
 
 
 @Component({
@@ -14,19 +15,13 @@ export class CollegueComponent implements OnInit {
   creer = true;
 
   collegueACreer: Collegue = new Collegue();
-
+  collegueAModifier: CollegueModif = {};
   constructor(private dataService: DataService) { }
 
   ngOnInit() {
     this.dataService.subjectDetailCollegue.subscribe( collegueDetail => this.col = collegueDetail);
   }
 
-  emailChange(valeurSaisie: string) {
-    this.col.email = valeurSaisie;
-  }
-  photoUrlChange(valeurSaisie: string) {
-    this.col.photoUrl = valeurSaisie;
-  }
   ajouterCollegue() {
     this.creer = false;
     console.log('Création d\'un nouveau collègue');
@@ -34,12 +29,18 @@ export class CollegueComponent implements OnInit {
   creerCollegue() {
     this.dataService.creerCollegue(this.collegueACreer).subscribe(() => {} , error => console.log(error));
     this.creer = true;
-  }
-  modifierCollegue(col: Collegue) {
-    this.modifier = false;
-    console.log(`modification du collègue ${col.nom}`);
-  }
-  retour() {
     this.modifier = true;
   }
+  modifierCollegue(matricule: string) {
+    this.dataService.modifierCollegue(this.collegueAModifier, matricule).subscribe(() => {} , error => console.log(error));
+    this.creer = true;
+    this.modifier = true;
+  }
+  modiForm() {
+    this.modifier = false;
+  }
+  annuler() {
+    this.modifier = true;
+  }
+
 }
