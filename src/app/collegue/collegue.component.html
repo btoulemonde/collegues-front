@@ -8,57 +8,107 @@
             <img class="img-fluid" src="{{col.photoUrl}}" alt="photo">
           </div>
           <div class="col-9">
-            <dl class="row">
-              <dt class=" col-6">Matricule</dt>
-              <dd class="col-6">{{col.matricule}}</dd>
-
-              <dt class="col-6">Nom</dt>
-              <dd class="col-6">{{col.nom | uppercase}}</dd>
-
-              <dt class="col-6">Prénoms</dt>
-              <dd class="col-6">{{col.prenoms}}</dd>
+            <div *ngIf="creer;else elseBlockCreer">
+              <dl class="row">
 
 
-              <dt class="col-6">Date de naissance</dt>
-              <dd class="col-6">{{col.dateDeNaissance | date:'dd/MM/yyyy'}}</dd>
-              <div *ngIf="modifier;else elseBlock1" class="col-12">
+                <dt class=" col-6">Matricule</dt>
+                <dd class="col-6">{{col.matricule}}</dd>
 
-                <dl class="row">
-                  <dt class="col-6">Email</dt>
-                  <dd class="col-6">{{col.email}}</dd>
-                </dl>
-              </div>
+                <dt class="col-6">Nom</dt>
+                <dd class="col-6">{{col.nom | uppercase}}</dd>
 
-              <ng-template #elseBlock1>
-                <div class="form-group col-12">
+                <dt class="col-6">Prénoms</dt>
+                <dd class="col-6">{{col.prenoms}}</dd>
+
+
+                <dt class="col-6">Date de naissance</dt>
+                <dd class="col-6">{{col.dateDeNaissance | date:'dd/MM/yyyy'}}</dd>
+                <div *ngIf="modifier;else elseBlock1" class="col-12">
+
                   <dl class="row">
-                    <dt class="col-6"><label for="email">Email</label></dt>
-                    <dd class="col-6"><input type="email" [value]="col.email" class="form-control" id="email"  #saisie1 (change)="emailChange(saisie1.value)"
-                        aria-describedby="emailHelp"></dd>
-                    <dt class="col-6"><label for="photoUrl">Photo url</label></dt>
-                    <dd class="col-6"><input type="photoUrl" [value]="col.photoUrl" class="form-control" id="photoUrl"  #saisie2 (change)="photoUrlChange(saisie2.value)"></dd>
+                    <dt class="col-6">Email</dt>
+                    <dd class="col-6">{{col.email}}</dd>
                   </dl>
                 </div>
-              </ng-template>
-            </dl>
+              </dl>
+            </div>
+
+            <ng-template #elseBlock1>
+              <div class="form-group col-12">
+                <dl class="row">
+                  <dt class="col-6"><label for="email">Email</label></dt>
+                  <dd class="col-6"><input type="email" [value]="col.email" class="form-control" id="email" #saisie1
+                      (change)="emailChange(saisie1.value)" aria-describedby="emailHelp"></dd>
+                  <dt class="col-6"><label for="photoUrl">Photo url</label></dt>
+                  <dd class="col-6"><input type="photoUrl" [value]="col.photoUrl" class="form-control" id="photoUrl"
+                      #saisie2 (change)="photoUrlChange(saisie2.value)"></dd>
+                </dl>
+              </div>
+            </ng-template>
+
+            <ng-template #elseBlockCreer>
+              <div class="form-group col-12">
+                <form #etatForm="ngForm">
+                  <dl class="row">
+                    <dt class="col-6"><label for="nom">Nom</label></dt>
+                    <dd class="col-6"><input type="texte" class="form-control" id="nom" name="nom"
+                        [(ngModel)]="collegueACreer.nom"></dd>
+                    <dt class="col-6"><label for="prenom">Prenom</label></dt>
+                    <dd class="col-6"><input type="texte" class="form-control" id="prenom"
+                        [(ngModel)]="collegueACreer.prenoms" name="prenom"></dd>
+                    <dt class="col-6"><label for="dateNaissance">Date de naissance</label></dt>
+                    <dd class="col-6"><input type="date" class="form-control" id="dateNaissance"
+                        [(ngModel)]="collegueACreer.dateDeNaissance" name="dateDeNaissance"></dd>
+                    <dt class="col-6"><label for="email">Email</label></dt>
+                    <dd class="col-6"><input type="email" class="form-control" id="email" aria-describedby="emailHelp"
+                        [(ngModel)]="collegueACreer.email" name="email" required #etatEmail="ngModel">
+                      <p *ngIf="etatEmail.invalid && etatEmail.dirty">Vous devez saisir un email</p>
+                    </dd>
+                    <dt class="col-6"><label for="photoUrl">Photo url</label></dt>
+                    <dd class="col-6"><input type="photoUrl" class="form-control" id="photoUrl"
+                        [(ngModel)]="collegueACreer.photoUrl"  name="photoUrl" required minlength="7" #etatPhoto="ngModel">
+                      <p *ngIf="etatPhoto.invalid && etatPhoto.dirty">Vous devez saisir une url d'au moins 7 caractères
+                      </p>
+                    </dd>
+                  </dl>
+                  <div class="row" *ngIf="etatForm.valid">
+                    <div class="col-4 offset-4 ">
+                      <button class="btn btn-dark" (click)="creerCollegue()">Valider</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+
+            </ng-template>
+
+
+
           </div>
         </div>
       </div>
     </div>
   </div>
-  <div *ngIf="modifier; else elseBlock2" class="row">
-    <div  class="col-4 ">
-      <a href="#" (click)="ajouterCollegue()" >Créer un nouveau collègue</a>
-    </div>
-    <div class="col-4">
-      <button type="button" class="btn btn-dark" (click)="modifierCollegue(col)">Modifier</button>
+
+  <div *ngIf="creer">
+    <div *ngIf="modifier; else elseBlock2" class="row">
+
+      <div class="col-4 ">
+        <button class="btn btn-dark" (click)="ajouterCollegue()">Créer un nouveau collègue</button>
+      </div>
+      <div class="col-4">
+        <button type="button" class="btn btn-dark" (click)="modifierCollegue(col)">Modifier</button>
+      </div>
     </div>
   </div>
   <ng-template #elseBlock2>
 
     <div class="col-4 offset-4">
-      <button type="button" class="btn btn-dark"(click)="retour()">Valider</button>
+      <button type="button" class="btn btn-dark" (click)="retour()">Valider</button>
     </div>
+
+  </ng-template>
+  <ng-template #elseBlockBoutonCreer>
 
   </ng-template>
 </div>

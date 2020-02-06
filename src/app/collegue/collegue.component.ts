@@ -11,6 +11,9 @@ import { DataService } from '../services/data.service';
 export class CollegueComponent implements OnInit {
   @Input() col: Collegue;
   modifier = true;
+  creer = true;
+
+  collegueACreer: Collegue = new Collegue();
 
   constructor(private dataService: DataService) { }
 
@@ -25,7 +28,12 @@ export class CollegueComponent implements OnInit {
     this.col.photoUrl = valeurSaisie;
   }
   ajouterCollegue() {
+    this.creer = false;
     console.log('Création d\'un nouveau collègue');
+  }
+  creerCollegue() {
+    this.dataService.creerCollegue(this.collegueACreer).subscribe(() => {} , error => console.log(error));
+    this.creer = true;
   }
   modifierCollegue(col: Collegue) {
     this.modifier = false;

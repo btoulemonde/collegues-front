@@ -29,4 +29,8 @@ export class DataService {
     })
     );
   }
+
+  creerCollegue(nouveauCollegue: Collegue): Observable<Collegue> {
+    return this.httpClient.post<Collegue>(url, nouveauCollegue);
+  }
 }
