@@ -1,5 +1,6 @@
-<div class="card mb-1 ">
-  <div class="card-body">
+<div class="countainer px-3 py-3">
+  <div class="card mb-1 ">
+    <div class="card-body">
       <div class="row">
         <div class="col-3">
           <img class="img-fluid" [src]="col.photoUrl" alt="photo">
@@ -16,8 +17,12 @@
             <dd class="col-6">{{col.dateDeNaissance | date:'dd/MM/yyyy'}}</dd>
             <dt class="col-6">Email</dt>
             <dd class="col-6">{{col.email }}</dd>
-            </dl>
+          </dl>
         </div>
       </div>
+      <div class="row">
+        <div class="col offset-6"><button routerLink="/gallerie" class="btn btn-dark">Retour</button></div>
+      </div>
+    </div>
   </div>
 </div>
