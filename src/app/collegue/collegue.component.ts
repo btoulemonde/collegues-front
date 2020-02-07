@@ -30,23 +30,23 @@ export class CollegueComponent implements OnInit {
     this.creer = false;
 
   }
-  creerCollegue(etatForm: FormControl) {
+  creerCollegue() {
     this.messageErreur = null;
     this.messageOk = null;
     this.dataService.creerCollegue(this.collegueACreer).subscribe(() => {
       this.messageOk = 'Collègue créé';
-      etatForm.reset();
+
     },
       error => this.messageErreur = 'Le collègue n\'a pas pu être créé');
     this.creer = true;
     this.modifier = true;
   }
-  modifierCollegue(matricule: string, etatForm: FormControl) {
+  modifierCollegue(matricule: string) {
     this.messageErreur = null;
     this.messageOk = null;
     this.dataService.modifierCollegue(this.collegueAModifier, matricule).subscribe(() => {
       this.messageOk = 'Collègue créé';
-      etatForm.reset();
+
     },
       error => this.messageErreur = 'Le collègue n\'a pas pu être créé');
     this.creer = true;
