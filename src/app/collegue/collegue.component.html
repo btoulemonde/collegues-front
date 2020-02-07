@@ -50,11 +50,10 @@
           </dd>
           <dt class="col-6"><label for="photoUrl">Photo url</label></dt>
           <dd class="col-6"><input type="photoUrl" class="form-control" id="photoUrl" name="photoUrl"
-              [(ngModel)]="collegueAModifier.photoUrl" value="{{col.photoUrl }}" require minlength="7"
+              [(ngModel)]="collegueAModifier.photoUrl" value="{{col.photoUrl }}" appUrlValidator require minlength="7"
               #etatPhoto2="ngModel">
             <div class="text-danger" *ngIf="etatPhoto2.invalid && etatPhoto2.dirty">Vous devez saisir une url
-              d'au moins 7
-              caractères
+              d'au moins 7 caractères et commencer par http
             </div>
           </dd>
         </dl>
@@ -93,10 +92,11 @@
           </dd>
           <dt class="col-6"><label for="photoUrl">Photo url</label></dt>
           <dd class="col-6"><input type="photoUrl" class="form-control" id="photoUrl"
-              [(ngModel)]="collegueACreer.photoUrl" name="photoUrl" required minlength="7" #etatPhoto="ngModel">
+              [(ngModel)]="collegueACreer.photoUrl" name="photoUrl" appUrlValidator required minlength="7" #etatPhoto="ngModel">
             <div class="text-danger" *ngIf="etatPhoto.invalid && etatPhoto.dirty">Vous devez saisir une url d'au
-              moins 7 caractères
+              moins 7 caractères et commencer par http
             </div>
+
           </dd>
         </dl>
 

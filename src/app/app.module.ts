@@ -9,6 +9,8 @@ import { RechercheCollegueParNomComponent } from './recherche-collegue-par-nom/r
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { CreationCollegueComponent } from './creation-collegue/creation-collegue.component';
+import { EmailValidatorDirective } from './validators/email-validator.directive';
+import { UrlValidatorDirective } from './validators/url-validator.directive';
 
 @NgModule({
   declarations: [
@@ -16,6 +18,8 @@ import { CreationCollegueComponent } from './creation-collegue/creation-collegue
     CollegueComponent,
     RechercheCollegueParNomComponent,
     CreationCollegueComponent,
+    EmailValidatorDirective,
+    UrlValidatorDirective,
 
   ],
   imports: [
