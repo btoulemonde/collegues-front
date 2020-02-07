@@ -12,8 +12,6 @@ export class EmailValidatorDirective implements AsyncValidator {
   constructor() { }
 
   validate(control: AbstractControl): Observable<ValidationErrors | null> {
-
-    if(control.value && control.value.)
     return null;
   }
 }
