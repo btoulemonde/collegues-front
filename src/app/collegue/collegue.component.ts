@@ -10,7 +10,7 @@ import { DataService } from '../services/data.service';
   styleUrls: ['./collegue.component.css']
 })
 export class CollegueComponent implements OnInit {
-  @Input() col: Collegue;
+  col: Collegue;
   modifier = true;
   creer = true;
 

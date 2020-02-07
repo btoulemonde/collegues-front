@@ -44,13 +44,13 @@
         <dl class="row">
           <dt class="col-6"><label for="email">Email</label></dt>
           <dd class="col-6"><input type="email" class="form-control" id="email" name="email"
-              [(ngModel)]="collegueAModifier.email" value ="{{col.email}}" #etatEmail="ngModel" email required>
+              [(ngModel)]="collegueAModifier.email" value="{{col.email }}" #etatEmail="ngModel" email required>
             <div class="text-danger" *ngIf="etatEmail.invalid && etatEmail.dirty">Vous devez saisir un email valide
             </div>
           </dd>
           <dt class="col-6"><label for="photoUrl">Photo url</label></dt>
           <dd class="col-6"><input type="photoUrl" class="form-control" id="photoUrl" name="photoUrl"
-              [(ngModel)]="collegueAModifier.photoUrl" value="{{col.photoUrl}}" require minlength="7"
+              [(ngModel)]="collegueAModifier.photoUrl" value="{{col.photoUrl }}" require minlength="7"
               #etatPhoto2="ngModel">
             <div class="text-danger" *ngIf="etatPhoto2.invalid && etatPhoto2.dirty">Vous devez saisir une url
               d'au moins 7
