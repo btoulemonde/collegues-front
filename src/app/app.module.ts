@@ -11,6 +11,18 @@ import { FormsModule } from '@angular/forms';
 import { CreationCollegueComponent } from './creation-collegue/creation-collegue.component';
 import { EmailValidatorDirective } from './validators/email-validator.directive';
 import { UrlValidatorDirective } from './validators/url-validator.directive';
+import { MenuComponent } from './menu/menu.component';
+import { Routes, RouterModule } from '@angular/router';
+import { GalerieComponent } from './galerie/galerie.component';
+import { DetailCollegueComponent } from './detail-collegue/detail-collegue.component';
+import { AccueilComponent } from './accueil/accueil.component';
+
+const ROUTES: Routes = [
+  {path: 'accueil', component: AccueilComponent},
+  {path: 'gallerie', component: GalerieComponent},
+  {path: 'detailCollegue/:matricule', component: DetailCollegueComponent},
+  {path: '', redirectTo: 'accueil', pathMatch: 'full'}
+];
 
 @NgModule({
   declarations: [
@@ -20,11 +32,12 @@ import { UrlValidatorDirective } from './validators/url-validator.directive';
     CreationCollegueComponent,
     EmailValidatorDirective,
     UrlValidatorDirective,
+    MenuComponent, GalerieComponent, DetailCollegueComponent, AccueilComponent
 
   ],
   imports: [
     BrowserModule, NgbModule,
-    HttpClientModule, FormsModule
+    HttpClientModule, FormsModule, RouterModule.forRoot(ROUTES)
   ],
   providers: [],
   bootstrap: [AppComponent]

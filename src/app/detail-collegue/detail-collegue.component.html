@@ -1,0 +1,23 @@
+<div class="card mb-1 ">
+  <div class="card-body">
+      <div class="row">
+        <div class="col-3">
+          <img class="img-fluid" [src]="col.photoUrl" alt="photo">
+        </div>
+        <div class="col-9">
+          <dl class="row">
+            <dt class=" col-6">Matricule</dt>
+            <dd class="col-6">{{col.matricule}}</dd>
+            <dt class="col-6">Nom</dt>
+            <dd class="col-6">{{col.nom | uppercase}}</dd>
+            <dt class="col-6">Prénoms</dt>
+            <dd class="col-6">{{col.prenoms}}</dd>
+            <dt class="col-6">Date de naissance</dt>
+            <dd class="col-6">{{col.dateDeNaissance | date:'dd/MM/yyyy'}}</dd>
+            <dt class="col-6">Email</dt>
+            <dd class="col-6">{{col.email }}</dd>
+            </dl>
+        </div>
+      </div>
+  </div>
+</div>

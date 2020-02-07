@@ -1,11 +1,15 @@
 <div class="countainer ">
-
-  <div class="card mb-1 ">
-    <div class="card-body">
-      <div *ngIf="creer;else elseBlockCreer">
+  <div class="row pagination justify-content-end">
+    <div class="col-6 ">
+      <button class="btn btn-dark" (click)="ajouterCollegue()">Créer un nouveau collègue</button>
+    </div>
+  </div>
+  <div *ngIf="creer;else elseBlockCreer">
+    <div class="card mb-1 col-12 ">
+      <div class="card-body">
         <div class="row">
           <div class="col-3">
-            <img class="img-fluid" src="{{col.photoUrl}}" alt="photo">
+            <img class="img-fluid" [src]="col.photoUrl" alt="photo">
           </div>
           <div class="col-9">
             <dl class="row">
@@ -23,9 +27,7 @@
                   <dd class="col-6">{{col.email}}</dd>
                 </dl>
                 <div class="row">
-                  <div class="col-6 ">
-                    <button class="btn btn-dark" (click)="ajouterCollegue()">Créer un nouveau collègue</button>
-                  </div>
+
                   <div class="col-4 ">
                     <button type="button" class="btn btn-dark" (click)="modiForm()">Modifier</button>
                   </div>
@@ -37,89 +39,108 @@
       </div>
     </div>
   </div>
+</div>
 
-  <ng-template #elseBlockModifier>
-    <div class="form-group col-12">
-      <form>
-        <dl class="row">
-          <dt class="col-6"><label for="email">Email</label></dt>
-          <dd class="col-6"><input type="email" class="form-control" id="email" name="email"
-              [(ngModel)]="collegueAModifier.email" value="{{col.email }}" #etatEmail="ngModel" email required>
-            <div class="text-danger" *ngIf="etatEmail.invalid && etatEmail.dirty">Vous devez saisir un email valide
-            </div>
-          </dd>
-          <dt class="col-6"><label for="photoUrl">Photo url</label></dt>
-          <dd class="col-6"><input type="photoUrl" class="form-control" id="photoUrl" name="photoUrl"
-              [(ngModel)]="collegueAModifier.photoUrl" value="{{col.photoUrl }}" appUrlValidator require minlength="7"
-              #etatPhoto2="ngModel">
-            <div class="text-danger" *ngIf="etatPhoto2.invalid && etatPhoto2.dirty">Vous devez saisir une url
-              d'au moins 7 caractères et commencer par http
-            </div>
-          </dd>
-        </dl>
+<ng-template #elseBlockModifier>
+  <div class="form-group col-12">
+    <form>
+      <dl class="row">
+        <dt class="col-6"><label for="email">Email</label></dt>
+        <dd class="col-6"><input type="email" class="form-control" id="email" name="email"
+            [(ngModel)]="collegueAModifier.email" [value]="col.email " #etatEmail="ngModel" email required>
+          <div class="text-danger" *ngIf="etatEmail.invalid && etatEmail.dirty">Vous devez saisir un email valide
+          </div>
+        </dd>
+        <dt class="col-6"><label for="photoUrl">Photo url</label></dt>
+        <dd class="col-6"><input type="photoUrl" class="form-control" id="photoUrl" name="photoUrl"
+            [(ngModel)]="collegueAModifier.photoUrl" [value]="col.photoUrl " appUrlValidator required minlength="7"
+            #etatPhoto2="ngModel">
+          <div class="text-danger" *ngIf="etatPhoto2.invalid && etatPhoto2.dirty">Vous devez saisir une url
+            d'au moins 7 caractères et commencer par http
+          </div>
+        </dd>
+      </dl>
 
+      <div class="row">
+        <div class="col-4 ">
+          <button type="button" class="btn btn-dark" (click)="modifierCollegue(col.matricule)">Valider</button>
+        </div>
+        <div class="col-4 offset-4">
+          <button type="button" class="btn btn-dark" (click)="annuler()">annuler</button>
+        </div>
+      </div>
+
+    </form>
+  </div>
+</ng-template>
+
+<ng-template #elseBlockCreer>
+  <div class="card mb-1 col-12 ">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-3">
+          <img class="img-fluid" [src]="col.photoUrl" alt="photo">
+        </div>
+        <div class="col-9">
+          <dl class="row">
+            <div class="form-group col-12">
+
+              <form #etatForm="ngForm">
+                <dt class="col-6"><label for="nom">Nom</label></dt>
+                <dd class="col-6"><input type="texte" class="form-control" id="nom" name="nom"
+                    [(ngModel)]="collegueACreer.nom" required>
+                </dd>
+                <dt class="col-6"><label for="prenom">Prenom</label></dt>
+                <dd class="col-6"><input type="texte" class="form-control" id="prenom"
+                    [(ngModel)]="collegueACreer.prenoms" name="prenom" required></dd>
+                <dt class="col-6"><label for="dateNaissance">Date de naissance</label></dt>
+                <dd class="col-6"><input type="date" class="form-control" id="dateNaissance"
+                    [(ngModel)]="collegueACreer.dateDeNaissance" name="dateDeNaissance" required>
+                </dd>
+                <dt class="col-6"><label for="email">Email</label></dt>
+                <dd class="col-6"><input type="email" class="form-control" id="email" aria-describedby="emailHelp"
+                    [(ngModel)]="collegueACreer.email" name="email" email required #etatEmail="ngModel" required>
+                  <div class="text-danger" *ngIf="etatEmail.invalid && etatEmail.dirty">Vous devez saisir un email
+                    valide
+                  </div>
+                </dd>
+                <dt class="col-6"><label for="photoUrl">Photo url</label></dt>
+                <dd class="col-6"><input type="photoUrl" class="form-control" id="photoUrl"
+                    [(ngModel)]="collegueACreer.photoUrl" name="photoUrl" appUrlValidator required minlength="7"
+                    #etatPhoto="ngModel">
+                  <div class="text-danger" *ngIf="etatPhoto.invalid && etatPhoto.dirty">Vous devez saisir une url d'au
+                    moins 7 caractères et commencer par http
+                  </div>
+                  <div *ngIf="messageErreur" class="alert alert-danger" role="alert">{{messageErreur}}</div>
+                  <div *ngIf="messageOk" class="alert alert-success" role="alert"> {{messageOk}} </div>
+                </dd>
+              </form>
+            </div>
+          </dl>
+        </div>
+      </div>
+      <div class="row" *ngIf="etatForm.valid; else blockValiderCreerDisable">
+        <div class="col-4  ">
+          <button class="btn btn-dark" (click)="creerCollegue()">Valider</button>
+        </div>
+        <div class="col-4 ">
+          <button type="button" class="btn btn-dark" (click)="annuler()">annuler</button>
+        </div>
+      </div>
+      <ng-template #blockValiderCreerDisable>
         <div class="row">
-          <div class="col-4 ">
-            <button type="button" class="btn btn-dark" (click)="modifierCollegue(col.matricule)">Valider</button>
-          </div>
-          <div class="col-4 offset-4">
-            <button type="button" class="btn btn-dark" (click)="annuler()">annuler</button>
-          </div>
-        </div>
-
-      </form>
-    </div>
-  </ng-template>
-
-  <ng-template #elseBlockCreer>
-    <div class="form-group col-12">
-      <form #etatForm="ngForm">
-        <dl class="row">
-          <dt class="col-6"><label for="nom">Nom</label></dt>
-          <dd class="col-6"><input type="texte" class="form-control" id="nom" name="nom"
-              [(ngModel)]="collegueACreer.nom">
-          </dd>
-          <dt class="col-6"><label for="prenom">Prenom</label></dt>
-          <dd class="col-6"><input type="texte" class="form-control" id="prenom" [(ngModel)]="collegueACreer.prenoms"
-              name="prenom"></dd>
-          <dt class="col-6"><label for="dateNaissance">Date de naissance</label></dt>
-          <dd class="col-6"><input type="date" class="form-control" id="dateNaissance"
-              [(ngModel)]="collegueACreer.dateDeNaissance" name="dateDeNaissance"></dd>
-          <dt class="col-6"><label for="email">Email</label></dt>
-          <dd class="col-6"><input type="email" class="form-control" id="email" aria-describedby="emailHelp"
-              [(ngModel)]="collegueACreer.email" name="email" email required #etatEmail="ngModel">
-            <div class="text-danger" *ngIf="etatEmail.invalid && etatEmail.dirty">Vous devez saisir un email valide</div>
-          </dd>
-          <dt class="col-6"><label for="photoUrl">Photo url</label></dt>
-          <dd class="col-6"><input type="photoUrl" class="form-control" id="photoUrl"
-              [(ngModel)]="collegueACreer.photoUrl" name="photoUrl" appUrlValidator required minlength="7" #etatPhoto="ngModel">
-            <div class="text-danger" *ngIf="etatPhoto.invalid && etatPhoto.dirty">Vous devez saisir une url d'au
-              moins 7 caractères et commencer par http
-            </div>
-
-          </dd>
-        </dl>
-
-        <div class="row" *ngIf="etatForm.valid; else blockValiderCreerDisable">
           <div class="col-4  ">
-            <button class="btn btn-dark" (click)="creerCollegue()">Valider</button>
+            <button class="btn btn-dark" (click)="creerCollegue() " disabled>Valider</button>
           </div>
-          <div class="col-4 ">
+          <div class="col-4 offset-3">
             <button type="button" class="btn btn-dark" (click)="annuler()">annuler</button>
           </div>
         </div>
-        <ng-template #blockValiderCreerDisable>
-          <div class="row">
-            <div class="col-4  ">
-              <button class="btn btn-dark" (click)="creerCollegue() " disabled>Valider</button>
-            </div>
-            <div class="col-4 offset-3">
-              <button type="button" class="btn btn-dark" (click)="annuler()">annuler</button>
-            </div>
-          </div>
-        </ng-template>
-
-      </form>
+      </ng-template>
     </div>
+  </div>
+</ng-template>
 
-  </ng-template>
+
+
+
