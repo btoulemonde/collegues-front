@@ -124,13 +124,13 @@
           <button class="btn btn-dark" (click)="creerCollegue(etatForm)">Valider</button>
         </div>
         <div class="col-4 ">
-          <button type="button" class="btn btn-dark" (click)="annuler(etatForm)">annuler</button>
+          <button type="button" class="btn btn-dark" (click)="annuler()">annuler</button>
         </div>
       </div>
       <ng-template #blockValiderCreerDisable>
         <div class="row">
           <div class="col-4  ">
-            <button class="btn btn-dark" (click)="creerCollegue() " disabled>Valider</button>
+            <button class="btn btn-dark" (click)="creerCollegue(etatForm) " disabled>Valider</button>
           </div>
           <div class="col-4 offset-3">
             <button type="button" class="btn btn-dark" (click)="annuler()">annuler</button>
